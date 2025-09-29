@@ -119,6 +119,23 @@ public class MapaPubli {
 		}
 	}
 	
+	public Publicacion buscarPubli (String id, String titulo) {
+		Publicacion p =mapaPublicaciones.get(id);
+		return p;
+	}
+	
+	public void aniadirPubli (String id, String titulo) {
+		Publicacion p = new Publicacion(id, titulo);
+		mapaPublicaciones.put(id, p);
+	}
+	
+	public void aniadirCita (String idPubli, String idCita) {
+		if (!mapaPublisCitadas.containsKey(idPubli)) {
+			mapaPublisCitadas.put(idPubli, new ArrayList<>());
+		}
+		mapaPublisCitadas.get(idPubli).add(idCita);
+	}
+	
 }
 
 

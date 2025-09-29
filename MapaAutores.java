@@ -3,14 +3,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class ListaAutores {
+public class MapaAutores {
 
-	private ArrayList<Autor> listaAutores;
+	private HashMap<String, Autor> mapaAutores;
 	
-	public ListaAutores() {
-		listaAutores = new ArrayList<>();
+	public MapaAutores() {
+		mapaAutores = new HashMap<>();
 	}
 	
 	public void cargarAutores(String nombre) {
@@ -21,7 +22,7 @@ public class ListaAutores {
 				linea = entrada.nextLine();
 				String info[] = linea.split(" # ");
 				Autor a = new Autor(info[0], info[1]);
-				listaAutores.add(a);
+				mapaAutores.put(info[0], a);
 			}
 			entrada.close();
 		} catch (IOException e) {
@@ -32,7 +33,7 @@ public class ListaAutores {
 	public void guardarAutores(String nombre) {
 		try {
 			PrintWriter salida = new PrintWriter(new File(nombre));
-			for (Autor a: listaAutores) {
+			for (Autor a: mapaAutores.values()) {
 				salida.println(a.getId()+" # "+a.getNombre());
 			}
 			salida.flush();
@@ -41,6 +42,11 @@ public class ListaAutores {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void aniadirAutor (String id, String nom) {
+		Autor a = new Autor(id, nom);
+		mapaAutores.put(id, a);
 	}
 	
 }
