@@ -2,7 +2,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -47,6 +46,10 @@ public class MapaAutores {
 	public void aniadirAutor (String id, String nom) {
 		Autor a = new Autor(id, nom);
 		mapaAutores.put(id, a);
+	}
+	
+	public void eliminarAutor (Autor a) {
+		mapaAutores.remove(a.getId());
 	}
 	
 }
