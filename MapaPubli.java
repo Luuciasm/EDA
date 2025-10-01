@@ -9,31 +9,36 @@ import java.util.Scanner;
 
 public class MapaPubli {
 
-	private HashMap<String, ArrayList<String>> mapaPublisCitadas;
-	private HashMap<String, Publicacion> mapaPublicaciones;
-	private HashMap<String, ArrayList<String>> mapaPublisAutor;
-	
+    //Atributos: Declaracion de HashMaps
+	private HashMap<String, ArrayList<String>> mapaPublisCitadas; //Relaciona el código con publicacion citada (String)
+	private HashMap<String, Publicacion> mapaPublicaciones;//Relaciona el código con la publicacion (Publicacion)
+	private HashMap<String, ArrayList<String>> mapaPublisAutor; //Relaciona el codigo con las publicaciones del Autor (String)
+                                                                // Lo hacemos de tipo String para evitar bulces infinitos
+	//Constructora
+    // Los HashMaps son como los ArrayList, pero mas eficientes
 	public MapaPubli() {
 		mapaPublisCitadas = new HashMap<>();
 		mapaPublicaciones = new HashMap<>();
 		mapaPublisAutor = new HashMap<>();	
 	}
 	
-	public void cargarCitadas(String nombre) {
-		Scanner entrada;
+	public void cargarCitadas(String nombre) { //Crea o añade a la lista de citadas de una publi
+		Scanner entrada; //Abrimos el scanner
 		try {
-			entrada = new Scanner(new FileReader(nombre));
+			entrada = new Scanner(new FileReader(nombre)); //nombre=nombre del fichero
 			String linea;
-			while (entrada.hasNextLine()) {
-				linea = entrada.nextLine();
-				String info[]= linea.split(" # ");
-				if (!mapaPublisCitadas.containsKey(info[0])) {
-					mapaPublisCitadas.put(info[0], new ArrayList<String>());
+			while (entrada.h::sNextLine()) { //Mientras exista una siguiente linea que leer
+				linea = entrada.nextLine(); //Guardio la linea del fichero en la variable fichero
+				String info[]= linea.split(" # "); //Cojo ambos datos separados por un #
+				if (!mapaPublisCitadas.containsKey(info[0])) { //Si el primer codigo que he guardado no esta guardado
+					mapaPublisCitadas.put(info[0], new ArrayList<String>()); //Añado el primer codigo y creo un ArrayList
+                                                                            // donde guardaré las publis citadas
 				}
-				mapaPublisCitadas.get(info[0]).add(info[1]);
+				mapaPublisCitadas.get(info[0]).add(info[1]); // Si ya esta guardada, le añado la citada (el segundo codigo).
+                                                            // Siempre se ejecuta.
 			}
-			entrada.close();
-	}catch (IOException e) {
+			entrada.close(); //Cerramos el scanner
+	}catch (IOException e) { //Excepcion si no se puede leer el fichero
 			e.printStackTrace();
 		}
 	}
@@ -54,7 +59,7 @@ public class MapaPubli {
 		
 	}
 	
-	public void cargarPublicaciones(String nombre) {
+	public void cargarPublicaciones(String nombre) { //Relaciona publis con sus codigos
 		try {
 			Scanner entrada = new Scanner(new FileReader(nombre));
 			String linea;
@@ -62,7 +67,7 @@ public class MapaPubli {
 				linea = entrada.nextLine();
 				String info[] = linea.split(" # ");
 				Publicacion p = new Publicacion(info[0], info[1]);
-				mapaPublicaciones.put(info[0], p);
+				mapaPublicaciones.put(info[0], p); //Relacionamos el codigo y la publi
 			}
 			entrada.close();
 		} catch (IOException e) {
@@ -84,20 +89,20 @@ public class MapaPubli {
 		
 	}
 	
-	public void cargarPublisAutor(String nombre) {
+	public void cargarPublisAutor(String nombre) { //Crea la lista de Autores de cada publi
 		try {
 			Scanner entrada = new Scanner(new FileReader(nombre));
 			String linea;
 			while (entrada.hasNextLine()) {
 				linea = entrada.nextLine();
 				String info[] = linea.split(" # ");
-				String idPubli = info[0];
-				String idAutor = info[1];
-				if (!mapaPublisAutor.containsKey(idPubli)) {
-					mapaPublisAutor.put(idPubli, new ArrayList<>());
-				}
-				mapaPublisAutor.get(idPubli).add(idAutor);
-			}
+				String idPubli = info[0]; //El primero codigo es el idPubli
+				String idAutor = info[1]; //El segundo codigo es el idAutor
+				if (!mapaPublisAutor.containsKey(idPubli)) { //Si el idPubli no se ha guardado antes
+					mapaPublisAutor.put(idPubli, new ArrayList<>()); //Añadimos al mapa el idPubli y un array
+				}                                                   //donde se guardaran los autores de esa publi
+				mapaPublisAutor.get(idPubli).add(idAutor); //Añadimos el idAutor aesa publi
+			}                                               // se ejecuta siempre.
 			entrada.close();
 		} catch (IOException e) {
 			e.printStackTrace();

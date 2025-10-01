@@ -28,5 +28,5 @@ public class Autor {
 	public void setId(String id) {
 		this.id = id;
 	}
-	//Prueba de que PORFIN funciona 17:43
+
 }
