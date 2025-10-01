@@ -28,5 +28,9 @@ public class Autor {
 	public void setId(String id) {
 		this.id = id;
 	}
+<<<<<<< HEAD
+
+=======
 	
+>>>>>>> 30b79d2a82d388f8b52dd3913fea5010a5ed6ab0
 }
