@@ -12,7 +12,8 @@ public class MapaAutores {
 	public MapaAutores() {
 		mapaAutores = new HashMap<>();
 	}
-	
+	//Lee los datos del fichero que relaciona el identificador de cada autor con su nombre.
+	//y los guarda en un mapa que tiene como clave el identificador del autor y el propio autor como valor.
 	public void cargarAutores(String nombre) {
 		try {
 			Scanner entrada = new Scanner(new FileReader(nombre));
@@ -29,6 +30,7 @@ public class MapaAutores {
 		}
 	}
 	
+	//Guarda los autores actualizados en el fichero.
 	public void guardarAutores(String nombre) {
 		try {
 			PrintWriter salida = new PrintWriter(new File(nombre));
@@ -43,11 +45,13 @@ public class MapaAutores {
 		
 	}
 	
+	//Dado un autor, devolver una lista con sus publicaciones
 	public void aniadirAutor (String id, String nom) {
 		Autor a = new Autor(id, nom);
 		mapaAutores.put(id, a);
 	}
 	
+	//Borrar un autor
 	public void eliminarAutor (Autor a) {
 		mapaAutores.remove(a.getId());
 	}

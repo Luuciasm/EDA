@@ -18,6 +18,8 @@ public class MapaPubli {
 		mapaPublisAutor = new HashMap<>();	
 	}
 	
+	//Lee los datos del fichero que relaciona los ids de las publicaciones, con los ids de las publicaciones que son citadas.
+	//Guarda como key el id de la publicacion, y como valor la lista de publicaciones que son citadas.
 	public void cargarCitadas(String nombre) {
 		Scanner entrada;
 		try {
@@ -37,6 +39,7 @@ public class MapaPubli {
 		}
 	}
 	
+	//Guarda las publicaciones citadas actualizadas en el fichero.
 	public void guardarCitadas(String nombre) {
 		try {
 			PrintWriter salida = new PrintWriter(new File(nombre));
@@ -53,6 +56,8 @@ public class MapaPubli {
 		
 	}
 	
+	//Lee los datos de fichero que relaciona los ids de las publicaciones con los titulos,
+	//guardando como clave el id de la publicacion, y como valor la publicacion en si.
 	public void cargarPublicaciones(String nombre) {
 		try {
 			Scanner entrada = new Scanner(new FileReader(nombre));
@@ -69,6 +74,7 @@ public class MapaPubli {
 		}
 	}
 	
+	//Guarda las publicaciones actualizadas en el fichero.
 	public void guardarPublicaciones(String nombre) {
 		try {
 			PrintWriter salida = new PrintWriter(new File(nombre));
@@ -83,6 +89,7 @@ public class MapaPubli {
 		
 	}
 	
+	//Lee los datos del fichero que relaciona, los ids de las publicaciones con los ids
 	public void cargarPublisAutor(String nombre) {
 		try {
 			Scanner entrada = new Scanner(new FileReader(nombre));
