@@ -2,11 +2,12 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
-public class ListaAutores {
+public class MapaAutores {
 
+<<<<<<< HEAD:ListaAutores.java
 	private ArrayList<Autor> listaAutores; //Atributos
 	
 	public ListaAutores() {
@@ -23,6 +24,23 @@ public class ListaAutores {
                                                             // separando ambos datos con el .split cuando aparezca un #
 				Autor a = new Autor(info[0], info[1]);  //Relacionamos código y nombre en el objeto Autor
 				listaAutores.add(a); //Lo añadimos a la listaAutores
+=======
+	private HashMap<String, Autor> mapaAutores;
+	
+	public MapaAutores() {
+		mapaAutores = new HashMap<>();
+	}
+	
+	public void cargarAutores(String nombre) {
+		try {
+			Scanner entrada = new Scanner(new FileReader(nombre));
+			String linea;
+			while (entrada.hasNextLine()) {
+				linea = entrada.nextLine();
+				String info[] = linea.split(" # ");
+				Autor a = new Autor(info[0], info[1]);
+				mapaAutores.put(info[0], a);
+>>>>>>> 30b79d2a82d388f8b52dd3913fea5010a5ed6ab0:MapaAutores.java
 			}
 			entrada.close(); //Cerramos el scanner
 		} catch (IOException e) {   //Excepcion que salta (si no se puede leer el fichero)
@@ -33,7 +51,7 @@ public class ListaAutores {
 	public void guardarAutores(String nombre) { //
 		try {
 			PrintWriter salida = new PrintWriter(new File(nombre));
-			for (Autor a: listaAutores) {
+			for (Autor a: mapaAutores.values()) {
 				salida.println(a.getId()+" # "+a.getNombre());
 			}
 			salida.flush();
@@ -42,6 +60,15 @@ public class ListaAutores {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void aniadirAutor (String id, String nom) {
+		Autor a = new Autor(id, nom);
+		mapaAutores.put(id, a);
+	}
+	
+	public void eliminarAutor (Autor a) {
+		mapaAutores.remove(a.getId());
 	}
 	
 }

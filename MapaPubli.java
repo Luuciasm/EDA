@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -122,6 +121,92 @@ public class MapaPubli {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public Publicacion buscarPubli (String id, String titulo) {
+		Publicacion p =mapaPublicaciones.get(id);
+		return p;
+	}
+	
+	public void aniadirPubli (String id, String titulo) {
+		Publicacion p = new Publicacion(id, titulo);
+		mapaPublicaciones.put(id, p);
+	}
+	
+	public void aniadirCita (String idPubli, String idCita) {
+		if (!mapaPublisCitadas.containsKey(idPubli)) {
+			mapaPublisCitadas.put(idPubli, new ArrayList<>());
+		}
+		mapaPublisCitadas.get(idPubli).add(idCita);
+	}
+	
+	public void aniadirAutorAPubli (String idAutor, String idPubli) {
+		if (!mapaPublisAutor.containsKey(idPubli)) {
+			mapaPublisAutor.put(idPubli, new ArrayList<>());
+		}
+		mapaPublisAutor.get(idPubli).add(idAutor);
+	}
+	
+	public ArrayList<String> obtenerListaCitas (String idPubli) {
+		ArrayList<String> lista = mapaPublisCitadas.get(idPubli);
+		return lista;
+		
+	}
+	
+	public ArrayList<String> obtenerListaAutores (Publicacion p){
+		ArrayList<String> lista = mapaPublisAutor.get(p.getId());
+		return lista;
+	}
+	
+	public ArrayList<Publicacion> obtenerPublisDeAutor (Autor a){
+		ArrayList<Publicacion> listaPublis = new ArrayList<>();
+		for (String idPubli:mapaPublisAutor.keySet()) {
+			ArrayList<String> listaAutores = mapaPublisAutor.get(idPubli);
+			int pos = listaAutores.indexOf(a.getId());
+			if(pos != -1) {
+				Publicacion p =mapaPublicaciones.get(idPubli);
+				listaPublis.add(p);
+			}
+		}
+		return listaPublis;
+	}
+	
+	public void eliminarPubli (Publicacion p) {
+		mapaPublicaciones.remove(p.getId());
+	}
+	
+	public ArrayList<Publicacion> ordenarPublis (){
+		ArrayList<Publicacion> listaOrdenada = new ArrayList<Publicacion>();
+		for (Publicacion p: mapaPublicaciones.values()) {
+			if(listaOrdenada.size() == 0) {
+				listaOrdenada.add(p);
+			}else {
+				int inicio = 0;
+				int fin = listaOrdenada.size()-1;
+				int mitad = 0;
+				boolean encontrado = false;
+				while (inicio <= fin && !encontrado) {
+					mitad = (inicio + fin)/2;
+					Publicacion publi =listaOrdenada.get(mitad);
+					if (publi.getId().compareTo(p.getId()) < 0) {
+						inicio = mitad;
+					}else {
+						if (mitad == 0 || listaOrdenada.get(mitad-1).getId().compareTo(p.getId()) < 0) {
+							encontrado = true;
+						}else {
+							fin = mitad -1;
+						}
+					}
+				}
+				if (!encontrado) {
+					listaOrdenada.add(p);
+				}else {
+					listaOrdenada.add(mitad, p);
+				}
+				
+			}
+		}
+		return listaOrdenada;
 	}
 	
 }
