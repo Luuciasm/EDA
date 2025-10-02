@@ -103,8 +103,8 @@ public class MapaPubli {
 				linea = entrada.nextLine();
 				String info[] = linea.split(" # ");
 				String idPubli = info[0]; //El primero codigo es el idPubli
-				String idAutor = info[1]; //El segundo codigo es el idAutor
 				if (info.length == 2) {
+					String idAutor = info[1]; //El segundo codigo es el idAutor
 					if (!mapaPublisAutor.containsKey(idPubli)) { //Si el idPubli no se ha guardado antes
 						mapaPublisAutor.put(idPubli, new ArrayList<>()); //Añadimos al mapa el idPubli y un array
 					}                                                   //donde se guardaran los autores de esa publi
@@ -218,11 +218,20 @@ public class MapaPubli {
 		return listaOrdenada;
 	}
 	
-	//metodo para comprobar qie se ha cargado el fichero
-		public int comprobarFicheroCargado () {
+	//metodo para comprobar qie se ha cargado el fichero de publicaciones
+		public int comprobarFicheroCargadoPublicaciones () {
 			return mapaPublicaciones.keySet().size();
 		}
 	
+	//metodo para comprobar qie se ha cargado el fichero de citas
+		public int comprobarFicheroCargadoCitas () {
+			return mapaPublisCitadas.keySet().size();
+		}
+
+	//metodo para comprobar qie se ha cargado el fichero de Publis-autores
+			public int comprobarFicheroCargadoPublisAutores () {
+				return mapaPublisAutor.keySet().size();
+			}
 }
 
 

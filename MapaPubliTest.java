@@ -25,32 +25,20 @@ public class MapaPubliTest {
 
 	@Test
 	public void testCargarCitadas() {
-		mp.cargarPublisAutor("Datuak/publications-authors-all-final.txt");
-	}
-
-	@Test
-	public void testGuardarCitadas() {
-		fail("Not yet implemented");
+		mp.cargarCitadas("Datuak/publications-citedPubs-all.txt");
+		assertTrue(mp.comprobarFicheroCargadoCitas() != 0);
 	}
 
 	@Test
 	public void testCargarPublicaciones() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGuardarPublicaciones() {
-		fail("Not yet implemented");
+		mp.cargarPublicaciones("Datuak/publications-titles-all.txt");
+		assertTrue(mp.comprobarFicheroCargadoPublicaciones() !=0);
 	}
 
 	@Test
 	public void testCargarPublisAutor() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGuardarAutores() {
-		fail("Not yet implemented");
+		mp.cargarPublisAutor("Datuak/publications-authors-all-final.txt");
+		assertTrue(mp.comprobarFicheroCargadoPublisAutores() !=0);
 	}
 
 	@Test
