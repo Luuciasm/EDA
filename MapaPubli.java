@@ -104,11 +104,13 @@ public class MapaPubli {
 				String info[] = linea.split(" # ");
 				String idPubli = info[0]; //El primero codigo es el idPubli
 				String idAutor = info[1]; //El segundo codigo es el idAutor
-				if (!mapaPublisAutor.containsKey(idPubli)) { //Si el idPubli no se ha guardado antes
-					mapaPublisAutor.put(idPubli, new ArrayList<>()); //Añadimos al mapa el idPubli y un array
-				}                                                   //donde se guardaran los autores de esa publi
-				mapaPublisAutor.get(idPubli).add(idAutor); //Añadimos el idAutor aesa publi
-			}                                               // se ejecuta siempre.
+				if (info.length == 2) {
+					if (!mapaPublisAutor.containsKey(idPubli)) { //Si el idPubli no se ha guardado antes
+						mapaPublisAutor.put(idPubli, new ArrayList<>()); //Añadimos al mapa el idPubli y un array
+					}                                                   //donde se guardaran los autores de esa publi
+					mapaPublisAutor.get(idPubli).add(idAutor); //Añadimos el idAutor aesa publi
+				}                                               // se ejecuta siempre.
+			}
 			entrada.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -215,6 +217,11 @@ public class MapaPubli {
 		}
 		return listaOrdenada;
 	}
+	
+	//metodo para comprobar qie se ha cargado el fichero
+		public int comprobarFicheroCargado () {
+			return mapaPublicaciones.keySet().size();
+		}
 	
 }
 

@@ -39,8 +39,10 @@ public class MapaAutores {
 				linea = entrada.nextLine(); //linea es la linea que estamos leyendo
 				String info[] = linea.split(" # "); //Guardamos en la variable info el código y el nombre del autor
 													// separando ambos datos con el .split cuando aparezca un #
+				if (info.length ==2) {
 				Autor a = new Autor(info[0], info[1]); //Relacionamos código y nombre en el objeto Autor
 				mapaAutores.put(info[0], a); //Lo añadimos a la mapaAutores
+				}
 			}
 			entrada.close(); //Cerramos el scanner
 		} catch (IOException e) {   //Excepcion que salta (si no se puede leer el fichero)
@@ -72,6 +74,20 @@ public class MapaAutores {
 	//Borrar un autor
 	public void eliminarAutor (Autor a) {
 		mapaAutores.remove(a.getId());
+	}
+	
+	//metodo para comprobar qie se ha cargado el fichero
+	public int comprobarFicheroCargado () {
+		return mapaAutores.keySet().size();
+	}
+	
+	//metodo para comprobar que se ha añadido un autor
+	public boolean buscarAutor(String id) {
+		if (mapaAutores.containsKey(id)) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 }
