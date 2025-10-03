@@ -13,7 +13,7 @@ public class MapaAutoresTest {
 	@Before
 	public void setUp() throws Exception {
 		ma = new MapaAutores();
-		a1 = new Autor("Kevin Thiele" , "Q547084");
+		a1 = new Autor("Q547084", "Kevin Thiele");
 
 	}
 

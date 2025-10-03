@@ -12,7 +12,7 @@ public class MapaPubliTest {
 	@Before
 	public void setUp() throws Exception {
 		mp = new MapaPubli();
-		p = new Publicacion("Q40536987", "Circadian desynchronization");
+		p = new Publicacion("Q40536987" , "Circadian desynchronization");
 	}
 
 	@After
@@ -46,19 +46,26 @@ public class MapaPubliTest {
 
 	@Test
 	public void testBuscarPubli() {
-		
+		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
+		mp.aniadirPubli("Q51050711", "A diagnostic dilemma of syncope");
+		mp.aniadirPubli("Q51011108", "Of viruses, gloves, and crêpes");
+		assertEquals(p.getId(), mp.buscarPubli("Q40536987").getId());
+
 	}
 
 	@Test
 	public void testAniadirPubli() {
 		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
-		assertEquals(mp.buscarPubli("Q40536987", "Circadian desynchronization"), p);
-		
+		assertEquals(p.getId(), mp.buscarPubli("Q40536987").getId());
 	}
 
 	@Test
 	public void testAniadirCita() {
-		fail("Not yet implemented");
+		mp.aniadirCita("Q21136163", "Q24600704");
+		mp.aniadirCita("Q21136163", "Q28250818");
+		mp.aniadirCita("Q21136163", "Q29038534");
+		mp.aniadirCita("Q24657774", "Q35557791");
+		assertTrue(mp.comprobarFicheroCargadoCitas() == 2);
 	}
 
 	@Test

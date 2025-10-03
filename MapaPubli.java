@@ -29,7 +29,7 @@ public class MapaPubli {
 			String linea;
 			while (entrada.hasNextLine()) { //Mientras exista una siguiente linea que leer
 				linea = entrada.nextLine(); //Guardo la linea del fichero en la variable linea
-				String info[]= linea.split(" # "); //Cojo ambos datos separados por un #
+				String info[]= linea.split("\\s+#\\s+"); //Cojo ambos datos separados por un #
 				if (!mapaPublisCitadas.containsKey(info[0])) { //Si el primer codigo que he guardado no esta guardado
 					mapaPublisCitadas.put(info[0], new ArrayList<String>()); //Añado el primer codigo y creo un ArrayList
                                                                             // donde guardaré las publis citadas
@@ -68,7 +68,7 @@ public class MapaPubli {
 			String linea;
 			while (entrada.hasNextLine()) {
 				linea = entrada.nextLine();
-				String info[] = linea.split(" # ");
+				String info[] = linea.split("\\s+#\\s+");
 				Publicacion p = new Publicacion(info[0], info[1]);
 				mapaPublicaciones.put(info[0], p); //Relacionamos el codigo y la publi
 			}
@@ -101,7 +101,7 @@ public class MapaPubli {
 			String linea;
 			while (entrada.hasNextLine()) {
 				linea = entrada.nextLine();
-				String info[] = linea.split(" # ");
+				String info[] = linea.split("\\s+#\\s+");
 				String idPubli = info[0]; //El primero codigo es el idPubli
 				if (info.length == 2) {
 					String idAutor = info[1]; //El segundo codigo es el idAutor
@@ -132,7 +132,7 @@ public class MapaPubli {
 		}
 	}
 	
-	public Publicacion buscarPubli (String id, String titulo) {
+	public Publicacion buscarPubli (String id) {
 		Publicacion p = mapaPublicaciones.get(id);
 		return p;
 	}

@@ -41,7 +41,7 @@ public class MapaAutores {
 			String linea; //Declaramos un tipo string llamado línea, será la línea que leamos
 			while (entrada.hasNextLine()) { //Mientras en el fichero exista una siguiente linea que leer
 				linea = entrada.nextLine(); //linea es la linea que estamos leyendo
-				String info[] = linea.split(" # "); //Guardamos en la variable info el código y el nombre del autor
+				String info[] = linea.split("\\s+#\\s+"); //Guardamos en la variable info el código y el nombre del autor
 													// separando ambos datos con el .split cuando aparezca un #
 				if (info.length ==2) {
 				Autor a = new Autor(info[0], info[1]); //Relacionamos código y nombre en el objeto Autor
