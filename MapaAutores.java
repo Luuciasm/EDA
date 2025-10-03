@@ -6,6 +6,12 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class MapaAutores {
+	
+	private HashMap<String, Autor> mapaAutores;
+	
+	public MapaAutores() {
+		mapaAutores = new HashMap<>();
+	}
 
 //	private ArrayList<Autor> listaAutores; //Atributos
 //	
@@ -24,11 +30,9 @@ public class MapaAutores {
 //				Autor a = new Autor(info[0], info[1]);  
 //				listaAutores.add(a); 
 //
-	private HashMap<String, Autor> mapaAutores;
+
 	
-	public MapaAutores() {
-		mapaAutores = new HashMap<>();
-	}
+
 	//Lee los datos del fichero que relaciona el identificador de cada autor con su nombre.
 	//y los guarda en un mapa que tiene como clave el identificador del autor y el propio autor como valor.
 	public void cargarAutores(String nombre) { //Leer del fichero los codigos de AUTORES
