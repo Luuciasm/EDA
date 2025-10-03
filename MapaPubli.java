@@ -219,17 +219,17 @@ public class MapaPubli {
 	}
 	
 	//metodo para comprobar qie se ha cargado el fichero de publicaciones
-		public int comprobarFicheroCargadoPublicaciones () {
+		public int comprobarNumPublicaciones () {
 			return mapaPublicaciones.keySet().size();
 		}
 	
 	//metodo para comprobar qie se ha cargado el fichero de citas
-		public int comprobarFicheroCargadoCitas () {
+		public int comprobarNumCitas () {
 			return mapaPublisCitadas.keySet().size();
 		}
 
 	//metodo para comprobar qie se ha cargado el fichero de Publis-autores
-			public int comprobarFicheroCargadoPublisAutores () {
+			public int comprobarNumPublisAutores () {
 				return mapaPublisAutor.keySet().size();
 			}
 }

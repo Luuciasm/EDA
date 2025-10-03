@@ -29,19 +29,19 @@ public class MapaPubliTest {
 	@Test
 	public void testCargarCitadas() {
 		mp.cargarCitadas("Datuak/publications-citedPubs-all.txt");
-		assertTrue(mp.comprobarFicheroCargadoCitas() != 0);
+		assertTrue(mp.comprobarNumCitas() != 0);
 	}
 
 	@Test
 	public void testCargarPublicaciones() {
 		mp.cargarPublicaciones("Datuak/publications-titles-all.txt");
-		assertTrue(mp.comprobarFicheroCargadoPublicaciones() !=0);
+		assertTrue(mp.comprobarNumPublicaciones() !=0);
 	}
 
 	@Test
 	public void testCargarPublisAutor() {
 		mp.cargarPublisAutor("Datuak/publications-authors-all-final.txt");
-		assertTrue(mp.comprobarFicheroCargadoPublisAutores() !=0);
+		assertTrue(mp.comprobarNumPublisAutores() !=0);
 	}
 
 	@Test
@@ -65,7 +65,7 @@ public class MapaPubliTest {
 		mp.aniadirCita("Q21136163", "Q28250818");
 		mp.aniadirCita("Q21136163", "Q29038534");
 		mp.aniadirCita("Q24657774", "Q35557791");
-		assertTrue(mp.comprobarFicheroCargadoCitas() == 2);
+		assertTrue(mp.comprobarNumCitas() == 2);
 	}
 
 	@Test
