@@ -149,7 +149,7 @@ public class MapaPubli {
 		mapaPublisCitadas.get(idPubli).add(idCita);
 	}
 	
-	public void aniadirAutorAPubli (String idAutor, String idPubli) {
+	public void aniadirAutorAPubli (String idPubli, String idAutor) {
 		if (!mapaPublisAutor.containsKey(idPubli)) {
 			mapaPublisAutor.put(idPubli, new ArrayList<>());
 		}

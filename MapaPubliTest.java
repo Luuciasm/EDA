@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -70,12 +72,16 @@ public class MapaPubliTest {
 
 	@Test
 	public void testAniadirAutorAPubli() {
-		fail("Not yet implemented");
+		mp.aniadirAutorAPubli("Q101088249", "Q333959");
+		mp.aniadirAutorAPubli("Q101088249", "Q726376");
+		mp.aniadirAutorAPubli("Q104699038", "Q1384951");
+		mp.aniadirAutorAPubli("Q106812488", "Q102300903");
+		assertTrue(mp.comprobarNumPublisAutores() == 3);
 	}
 
 	@Test
 	public void testObtenerListaCitas() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
@@ -95,7 +101,8 @@ public class MapaPubliTest {
 
 	@Test
 	public void testOrdenarPublis() {
-		fail("Not yet implemented");
+		ArrayList<Publicacion> lista = mp.ordenarPublis();
+		assertTrue(lista.get(0).getId().compareTo(lista.get(1).getId()) < 0);
 	}
 
 }
