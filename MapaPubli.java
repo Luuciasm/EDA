@@ -133,7 +133,7 @@ public class MapaPubli {
 	}
 	
 	public Publicacion buscarPubli (String id, String titulo) {
-		Publicacion p =mapaPublicaciones.get(id);
+		Publicacion p = mapaPublicaciones.get(id);
 		return p;
 	}
 	

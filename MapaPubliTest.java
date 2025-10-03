@@ -7,15 +7,18 @@ import org.junit.Test;
 public class MapaPubliTest {
 	
 	private MapaPubli mp;
+	private Publicacion p;
 
 	@Before
 	public void setUp() throws Exception {
 		mp = new MapaPubli();
+		p = new Publicacion("Q40536987", "Circadian desynchronization");
 	}
 
 	@After
 	public void tearDown() throws Exception {
 		mp = null;
+		p = null;
 	}
 
 	@Test
@@ -43,12 +46,14 @@ public class MapaPubliTest {
 
 	@Test
 	public void testBuscarPubli() {
-		fail("Not yet implemented");
+		
 	}
 
 	@Test
 	public void testAniadirPubli() {
-		fail("Not yet implemented");
+		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
+		assertEquals(mp.buscarPubli("Q40536987", "Circadian desynchronization"), p);
+		
 	}
 
 	@Test
