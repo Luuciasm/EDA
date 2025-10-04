@@ -5,7 +5,7 @@ public class Publicacion {
 	private String id;
 	
 	
-	public Publicacion(String titulo, String id) {
+	public Publicacion(String id, String titulo) {
 		this.titulo = titulo;
 		this.id = id;
 	}
