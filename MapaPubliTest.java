@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -96,13 +96,17 @@ public class MapaPubliTest {
 
 	@Test
 	public void testEliminarPubli() {
-		fail("Not yet implemented");
+		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
+		Publicacion p = mp.buscarPubli("Q40536987");
+		mp.eliminarPubli(p);
+		assertTrue(mp.comprobarNumPublicaciones() == 0);
 	}
 
 	@Test
 	public void testOrdenarPublis() {
-		ArrayList<Publicacion> lista = mp.ordenarPublis();
+		List<Publicacion> lista = mp.ordenarPublis();
 		assertTrue(lista.get(0).getId().compareTo(lista.get(1).getId()) < 0);
 	}
+	
 
 }

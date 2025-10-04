@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class MapaPubli {
@@ -133,8 +135,7 @@ public class MapaPubli {
 	}
 	
 	public Publicacion buscarPubli (String id) {
-		Publicacion p = mapaPublicaciones.get(id);
-		return p;
+		return mapaPublicaciones.get(id);
 	}
 	
 	public void aniadirPubli (String id, String titulo) {
@@ -180,12 +181,16 @@ public class MapaPubli {
 		return listaPublis;
 	}
 	
+	public ArrayList<String> obtenerAutoresdePubli(String idPubli){
+		return mapaPublisAutor.get(idPubli);
+	}
+	
 	public void eliminarPubli (Publicacion p) {
 		mapaPublicaciones.remove(p.getId());
 	}
 	
-	public ArrayList<Publicacion> ordenarPublis (){
-		ArrayList<Publicacion> listaOrdenada = new ArrayList<Publicacion>();
+	public List<Publicacion> ordenarPublis (){
+		List<Publicacion> listaOrdenada = new LinkedList<>();
 		for (Publicacion p: mapaPublicaciones.values()) {
 			if(listaOrdenada.size() == 0) {
 				listaOrdenada.add(p);
@@ -198,7 +203,7 @@ public class MapaPubli {
 					mitad = (inicio + fin)/2;
 					Publicacion publi =listaOrdenada.get(mitad);
 					if (publi.getId().compareTo(p.getId()) < 0) {
-						inicio = mitad;
+						inicio = mitad + 1;
 					}else {
 						if (mitad == 0 || listaOrdenada.get(mitad-1).getId().compareTo(p.getId()) < 0) {
 							encontrado = true;

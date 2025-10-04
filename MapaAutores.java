@@ -94,4 +94,8 @@ public class MapaAutores {
 		}
 	}
 	
+	public Autor conseguirAutor(String idAutor) {
+		return mapaAutores.get(idAutor);
+	}
+	
 }
