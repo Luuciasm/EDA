@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -189,39 +188,57 @@ public class MapaPubli {
 		mapaPublicaciones.remove(p.getId());
 	}
 	
-	public List<Publicacion> ordenarPublis (){
-		List<Publicacion> listaOrdenada = new LinkedList<>();
-		for (Publicacion p: mapaPublicaciones.values()) {
-			if(listaOrdenada.size() == 0) {
-				listaOrdenada.add(p);
-			}else {
-				int inicio = 0;
-				int fin = listaOrdenada.size()-1;
-				int mitad = 0;
-				boolean encontrado = false;
-				while (inicio <= fin && !encontrado) {
-					mitad = (inicio + fin)/2;
-					Publicacion publi =listaOrdenada.get(mitad);
-					if (publi.getId().compareTo(p.getId()) < 0) {
-						inicio = mitad + 1;
-					}else {
-						if (mitad == 0 || listaOrdenada.get(mitad-1).getId().compareTo(p.getId()) < 0) {
-							encontrado = true;
-						}else {
-							fin = mitad -1;
-						}
-					}
-				}
-				if (!encontrado) {
-					listaOrdenada.add(p);
-				}else {
-					listaOrdenada.add(mitad, p);
-				}
-				
-			}
-		}
-		return listaOrdenada;
+	public List<Publicacion> ordenarPublis() {
+	    // Se crea una copia de las publicaciones antes de ordenarlas
+	    List<Publicacion> publicaciones = new ArrayList<>(mapaPublicaciones.values());
+	    return ordenarPorId(publicaciones);
 	}
+
+	private List<Publicacion> ordenarPorId(List<Publicacion> elementos) {
+	    if (elementos.size() < 2) {
+	        return elementos;
+	    }
+
+	    int puntoMedio = elementos.size() / 2;
+	    List<Publicacion> parteIzd = new ArrayList<>(elementos.subList(0, puntoMedio));
+	    List<Publicacion> parteDcha = new ArrayList<>(elementos.subList(puntoMedio, elementos.size()));
+
+	    // Llamadas recursivas
+	    List<Publicacion> izdaOrdenada = ordenarPorId(parteIzd);
+	    List<Publicacion> dchaOrdenada = ordenarPorId(parteDcha);
+
+	    return combinarListas(izdaOrdenada, dchaOrdenada);
+	}
+
+	private List<Publicacion> combinarListas(List<Publicacion> izda, List<Publicacion> dcha) {
+	    List<Publicacion> combinada = new ArrayList<>();
+	    int indiceIzq = 0;
+	    int indiceDer = 0;
+
+	    // Mezcla ordenada según el identificador de la publicación
+	    while (indiceIzq < izda.size() && indiceDer < dcha.size()) {
+	        String idIzq = izda.get(indiceIzq).getId();
+	        String idDer = dcha.get(indiceDer).getId();
+
+	        if (idIzq.compareTo(idDer) <= 0) {
+	            combinada.add(izda.get(indiceIzq++));
+	        } else {
+	            combinada.add(dcha.get(indiceDer++));
+	        }
+	    }
+
+	    // Añadir los elementos restantes de ambas listas
+	    if (indiceIzq < izda.size()) {
+	        combinada.addAll(izda.subList(indiceIzq, izda.size()));
+	    }
+	    if (indiceDer < dcha.size()) {
+	        combinada.addAll(dcha.subList(indiceDer, dcha.size()));
+	    }
+
+	    return combinada;
+	}
+
+
 	
 	
 	//metodo para comprobar qie se ha cargado el fichero de publicaciones
