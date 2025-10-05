@@ -223,6 +223,7 @@ public class MapaPubli {
 		return listaOrdenada;
 	}
 	
+	
 	//metodo para comprobar qie se ha cargado el fichero de publicaciones
 		public int comprobarNumPublicaciones () {
 			return mapaPublicaciones.keySet().size();

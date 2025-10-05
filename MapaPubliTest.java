@@ -81,29 +81,46 @@ public class MapaPubliTest {
 
 	@Test
 	public void testObtenerListaCitas() {
+		mp.aniadirCita("Q21136163", "Q24600704");
+		mp.aniadirCita("Q21136163", "Q28250818");
+		mp.aniadirCita("Q21136163", "Q29038534");
+		assertTrue (mp.obtenerListaCitas("Q21136163").size() == 3);
 		
 	}
 
 	@Test
 	public void testObtenerListaAutores() {
-		fail("Not yet implemented");
+		Publicacion p = new Publicacion("Q101088249", "Quasiconformal Homeomorphisms and Dynamics III. The Teichmüller Space of a Holomorphic Dynamical System");
+		mp.aniadirAutorAPubli(p.getId(), "Q333959");
+		mp.aniadirAutorAPubli(p.getId(), "Q726376");
+		assertTrue (mp.obtenerListaAutores(p).size() == 2);
 	}
 
 	@Test
 	public void testObtenerPublisDeAutor() {
-		fail("Not yet implemented");
+		Autor a = new Autor("Q61865588", "Stephen Doty");
+		mp.aniadirAutorAPubli("Q116765973", "Q61865588");
+		mp.aniadirAutorAPubli("Q116766325", "Q61865588");
+		mp.aniadirAutorAPubli("Q104699038", "Q1384951");
+		assertTrue(mp.obtenerPublisDeAutor(a).size() == 2);
 	}
+
 
 	@Test
 	public void testEliminarPubli() {
+		Publicacion p = new Publicacion("Q38075012", "Plant protein interactomes");
 		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
-		Publicacion p = mp.buscarPubli("Q40536987");
+		mp.aniadirPubli(p.getId(), p.getTitulo());
 		mp.eliminarPubli(p);
-		assertTrue(mp.comprobarNumPublicaciones() == 0);
+		assertTrue(mp.comprobarNumPublicaciones() == 1);
 	}
 
 	@Test
 	public void testOrdenarPublis() {
+		mp.aniadirPubli("Q40536987", "Circadian desynchronization");
+		mp.aniadirPubli("Q38075012", "Plant protein interactomes");
+		mp.aniadirPubli("Q28287657", "RSV fusion: time for a new model");
+		mp.aniadirPubli("Q38232402", "Nab-paclitaxel: a flattering facelift");
 		List<Publicacion> lista = mp.ordenarPublis();
 		assertTrue(lista.get(0).getId().compareTo(lista.get(1).getId()) < 0);
 	}

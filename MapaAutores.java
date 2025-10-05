@@ -12,25 +12,6 @@ public class MapaAutores {
 	public MapaAutores() {
 		mapaAutores = new HashMap<>();
 	}
-
-//	private ArrayList<Autor> listaAutores; //Atributos
-//	
-//	public ListaAutores() {
-//		listaAutores = new ArrayList<>();
-//	} //Constructora
-//	
-//	public void cargarAutores(String nombre) { 
-//		try {                                  
-//			Scanner entrada = new Scanner(new FileReader(nombre)); 
-//			String linea; 
-//			while (entrada.hasNextLine()) { 
-//				linea = entrada.nextLine(); 
-//				String info[] = linea.split(" # "); 
-//                                                           
-//				Autor a = new Autor(info[0], info[1]);  
-//				listaAutores.add(a); 
-//
-
 	
 
 	//Lee los datos del fichero que relaciona el identificador de cada autor con su nombre.
