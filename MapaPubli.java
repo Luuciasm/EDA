@@ -180,9 +180,6 @@ public class MapaPubli {
 		return listaPublis;
 	}
 	
-	public ArrayList<String> obtenerAutoresdePubli(String idPubli){
-		return mapaPublisAutor.get(idPubli);
-	}
 	
 	public void eliminarPubli (Publicacion p) {
 		mapaPublicaciones.remove(p.getId());

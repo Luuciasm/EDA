@@ -62,20 +62,12 @@ public class MapaAutores {
 	}
 	
 	//metodo para comprobar qie se ha cargado el fichero
-	public int comprobarFicheroCargado () {
+	public int comprobarNumAutores () {
 		return mapaAutores.keySet().size();
 	}
 	
-	//metodo para comprobar que se ha añadido un autor
-	public boolean buscarAutor(String id) {
-		if (mapaAutores.containsKey(id)) {
-			return true;
-		}else {
-			return false;
-		}
-	}
 	
-	public Autor conseguirAutor(String idAutor) {
+	public Autor buscarAutor(String idAutor) {
 		return mapaAutores.get(idAutor);
 	}
 	

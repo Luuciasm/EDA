@@ -26,8 +26,9 @@ public class PublicacionesYAutoresTest {
 	}
 
 	@Test
-	public void testObtenerAutoresDePubli() {
-		ArrayList<Autor> lista = pa.obtenerAutoresDePubli("Q24682718");
+	public void testObtenerListaAutores() {
+		Publicacion p = new Publicacion("Q38075012", "Plant protein interactomes");
+		ArrayList<Autor> lista = pa.obtenerListaAutores(p);
 		assertNotNull(lista);
 	}
 

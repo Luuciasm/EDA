@@ -14,11 +14,11 @@ public class PublicacionesYAutores {
 		ma.cargarAutores("Datuak/authors-name-all.txt");
 	}
 	
-	public ArrayList<Autor> obtenerAutoresDePubli (String idPubli){
-		ArrayList<String> lista = mp.obtenerAutoresdePubli(idPubli);
+	public ArrayList<Autor> obtenerListaAutores (Publicacion p){
+		ArrayList<String> lista = mp.obtenerListaAutores(p);
 		ArrayList<Autor> lista2 = new ArrayList<>();
 		for (String idAutor: lista) {
-			Autor a = ma.conseguirAutor(idAutor);
+			Autor a = ma.buscarAutor(idAutor);
 			lista2.add(a);
 		}
 		return lista2;
