@@ -186,7 +186,6 @@ public class MapaPubli {
 	}
 	
 	public List<Publicacion> ordenarPublis() {
-	    // Se crea una copia de las publicaciones antes de ordenarlas
 	    List<Publicacion> publicaciones = new ArrayList<>(mapaPublicaciones.values());
 	    return ordenarPorId(publicaciones);
 	}
@@ -200,7 +199,6 @@ public class MapaPubli {
 	    List<Publicacion> parteIzd = new ArrayList<>(elementos.subList(0, puntoMedio));
 	    List<Publicacion> parteDcha = new ArrayList<>(elementos.subList(puntoMedio, elementos.size()));
 
-	    // Llamadas recursivas
 	    List<Publicacion> izdaOrdenada = ordenarPorId(parteIzd);
 	    List<Publicacion> dchaOrdenada = ordenarPorId(parteDcha);
 
@@ -212,7 +210,6 @@ public class MapaPubli {
 	    int indiceIzq = 0;
 	    int indiceDer = 0;
 
-	    // Mezcla ordenada según el identificador de la publicación
 	    while (indiceIzq < izda.size() && indiceDer < dcha.size()) {
 	        String idIzq = izda.get(indiceIzq).getId();
 	        String idDer = dcha.get(indiceDer).getId();
@@ -224,7 +221,6 @@ public class MapaPubli {
 	        }
 	    }
 
-	    // Añadir los elementos restantes de ambas listas
 	    if (indiceIzq < izda.size()) {
 	        combinada.addAll(izda.subList(indiceIzq, izda.size()));
 	    }
@@ -238,17 +234,17 @@ public class MapaPubli {
 
 	
 	
-	//metodo para comprobar qie se ha cargado el fichero de publicaciones
+	//metodo para comprobar que se ha cargado el fichero de publicaciones
 		public int comprobarNumPublicaciones () {
 			return mapaPublicaciones.keySet().size();
 		}
 	
-	//metodo para comprobar qie se ha cargado el fichero de citas
+	//metodo para comprobar que se ha cargado el fichero de citas
 		public int comprobarNumCitas () {
 			return mapaPublisCitadas.keySet().size();
 		}
 
-	//metodo para comprobar qie se ha cargado el fichero de Publis-autores
+	//metodo para comprobar que se ha cargado el fichero de Publis-autores
 			public int comprobarNumPublisAutores () {
 				return mapaPublisAutor.keySet().size();
 			}
