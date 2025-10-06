@@ -5,11 +5,11 @@ public class PPal {
 		//MapaAutores ma = new MapaAutores();
 		MapaPubli mp = new MapaPubli();
 		//Obtener la fecha actual del sistema
-		mp.cargarPublicaciones("Datuak/publications-titles-all.txt");
 		long milisInicio = System.currentTimeMillis();
-		mp.ordenarPublis();
+		mp.cargarCitadas("Datuak/publications-citedPubs-all.txt");
 		long milisFin = System.currentTimeMillis();
 		
+		//mp.cargarPublicaciones("Datuak/publications-titles-all.txt");
 		//ma.cargarAutores("Datuak/authors-name-all.txt");
 		//mp.cargarPublisAutor("Datuak/publications-authors-all-final.txt");
 		//mp.cargarCitadas("Datuak/publications-citedPubs-all.txt");

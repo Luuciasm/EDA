@@ -38,15 +38,18 @@ public class MapaAutoresTest {
 
 	@Test
 	public void testAniadirAutor() {
-		ma.aniadirAutor("Q60320741", "Eric Waclawik");
+		//ma.aniadirAutor("Q60320741", "Eric Waclawik");
+		//assertTrue(ma.buscarAutor("Q60320741"));
+		ma.aniadirAutor("Q60320741", "Pepito");
 		assertTrue(ma.buscarAutor("Q60320741"));
 	}
 
 	@Test
 	public void testEliminarAutor() {
-		ma.aniadirAutor("Q60320741", "Eric Waclawik");
-		ma.eliminarAutor(a1);
-		assertFalse(ma.buscarAutor(a1.getId()));
+		Autor a2 = new Autor("Q60320741", "Eric Waclawik");
+		ma.aniadirAutor(a2.getId(), a2.getNombre());
+		ma.eliminarAutor(a2);
+		assertFalse(ma.buscarAutor(a2.getId()));
 	}
 
 }
